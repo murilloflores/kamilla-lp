@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dra. Kamilla - Ginecologia e Obstetrícia</title>
+    
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #6b73ff 0%, #9b59b6 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #25d366;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .cta-button:hover {
+            background-color: #128c7e;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .section {
+            padding: 60px 0;
+        }
+
+        .about {
+            background: white;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #6b73ff;
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: #666;
+        }
+
+        .calculator {
+            background: #f8f9fa;
+            text-align: center;
+        }
+
+        .calculator h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #6b73ff;
+        }
+
+        .calc-container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input[type="date"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="date"]:focus {
+            outline: none;
+            border-color: #6b73ff;
+        }
+
+        .calc-button {
+            background: #6b73ff;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .calc-button:hover {
+            background: #5a64f0;
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background: #e8f4fd;
+            border-radius: 10px;
+            border-left: 4px solid #6b73ff;
+            display: none;
+        }
+
+        .result h3 {
+            color: #6b73ff;
+            margin-bottom: 15px;
+        }
+
+        .result-item {
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .result-item strong {
+            color: #333;
+        }
+
+        .consultation-cta {
+            margin-top: 20px;
+            padding: 20px;
+            background: #fff8e1;
+            border-radius: 10px;
+            border-left: 4px solid #ffa726;
+        }
+
+        .consultation-cta h4 {
+            color: #f57c00;
+            margin-bottom: 10px;
+        }
+
+        .consultation-cta p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .calc-container {
+                padding: 30px 20px;
+                margin: 0 20px;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+            
+            .about div[style*="display: flex"] {
+                flex-direction: column !important;
+                text-align: center !important;
+                gap: 20px !important;
+            }
+            
+            .about img {
+                width: 150px !important;
+                height: 150px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Calculadora de Idade Gestacional</h1>
+            <p class="subtitle">Descubra em que semana da gravidez você está</p>
+            <p style="font-size: 1rem; opacity: 0.8; margin-top: 20px;">
+                <strong>Dra. Kamilla Manduca do Prado Flores</strong> - Ginecologia e Obstetrícia
+            </p>
+        </div>
+    </header>
+
+    <section class="section calculator">
+        <div class="container">
+            <div style="max-width: 600px; margin: 0 auto 40px; text-align: center; color: #666; line-height: 1.6;">
+                <p style="margin-bottom: 15px;">
+                    A <strong>idade gestacional</strong> é o tempo de gravidez calculado a partir da data da última menstruação (DUM). 
+                    É a forma padrão que os médicos usam para acompanhar o desenvolvimento do bebê e estimar a data do parto.
+                </p>
+                <p style="font-size: 0.95em;">
+                    <em>A gravidez dura aproximadamente 40 semanas (280 dias) a partir da DUM.</em>
+                </p>
+            </div>
+            
+            <div class="calc-container">
+                <div class="form-group">
+                    <label for="lmp-date">Data da sua última menstruação (DUM):</label>
+                    <input type="text" id="lmp-date" placeholder="Selecione a data..." style="width: 100%; padding: 12px; border: 2px solid #e1e5e9; border-radius: 8px; font-size: 1rem; cursor: pointer;" readonly>
+                </div>
+                
+                <button type="button" class="calc-button" onclick="calculateGestationalAge()">
+                    Calcular Idade Gestacional
+                </button>
+                
+                <div id="result" class="result">
+                    <h3>Resultado do seu cálculo:</h3>
+                    <div id="result-content"></div>
+                    
+                    <div class="consultation-cta">
+                        <h4>🤱 Que momento especial!</h4>
+                        <p>Agora que você sabe em que fase da gravidez está, que tal agendar uma consulta para acompanhar essa jornada única com todo o cuidado que você e seu bebê merecem?</p>
+                        <a href="#" class="cta-button" id="consultation-cta">Agendar Consulta Pré-natal</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hidden sections that appear after calculation -->
+    <section class="section about" id="about-section" style="display: none;">
+        <div class="container">
+            <div style="display: flex; align-items: center; gap: 40px; max-width: 900px; margin: 0 auto;">
+                <div style="flex-shrink: 0;">
+                    <img src="kamilla.jpeg" alt="Dra. Kamilla Manduca do Prado Flores" 
+                         style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; box-shadow: 0 8px 24px rgba(107, 115, 255, 0.15);">
+                </div>
+                <div style="flex: 1;">
+                    <h2 style="margin-top: 0;">Sobre a Dra. Kamilla Manduca</h2>
+                    <p>
+                        Graduada em Medicina pela Universidade Federal de Santa Catarina (2014) com residência em 
+                        Ginecologia e Obstetrícia pela Maternidade Carmela Dutra em Florianópolis-SC. 
+                        Oferece atendimento humanizado e personalizado, cuidando da saúde da mulher em todas as fases da vida.
+                    </p>
+                    <p>
+                        <strong>Especialidades:</strong> Obstetrícia • Parto humanizado • Ginecologia • 
+                        Pré-natal de alto risco • Planejamento familiar • Inserção de DIU
+                    </p>
+                    <p style="margin-top: 20px;">
+                        <a href="https://www.doctoralia.com.br/kamilla-manduca-do-prado-flores/ginecologista/florianopolis" 
+                           target="_blank" 
+                           style="color: #6b73ff; text-decoration: none; font-weight: 600;">
+                            ⭐ Veja avaliações de pacientes (5 estrelas)
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="cta-section" style="display: none; background: #f0f8ff; text-align: center; padding: 40px 0;">
+        <div class="container">
+            <h2 style="color: #6b73ff; margin-bottom: 20px;">Agende sua Consulta</h2>
+            <p style="margin-bottom: 30px; color: #666; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Agora que você sabe mais sobre sua gravidez, que tal agendar uma consulta para 
+                acompanhar essa jornada única com todo o cuidado especializado?
+            </p>
+            <a href="#" class="cta-button" id="main-cta">💬 Conversar no WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pt.js"></script>
+
+    <script>
+        // Initialize Flatpickr
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date();
+            const minDate = new Date();
+            minDate.setDate(today.getDate() - (40 * 7)); // 40 weeks ago
+            
+            flatpickr("#lmp-date", {
+                locale: "pt",
+                dateFormat: "d/m/Y",
+                maxDate: today,
+                minDate: minDate,
+                allowInput: false,
+                clickOpens: true,
+                placeholder: "Selecione a data...",
+                monthSelectorType: "dropdown",
+                yearSelectorType: "dropdown"
+            });
+        });
+
+        function calculateGestationalAge() {
+            const lmpDateStr = document.getElementById('lmp-date').value;
+            
+            if (!lmpDateStr) {
+                alert('Por favor, selecione a data da sua última menstruação.');
+                return;
+            }
+
+            // Parse the date (format: DD/MM/YYYY)
+            const dateParts = lmpDateStr.split('/');
+            const lmp = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+            const today = new Date();
+            
+            // Calculate difference in milliseconds
+            const diffTime = today - lmp;
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            
+            // Calculate gestational age
+            const weeks = Math.floor(diffDays / 7);
+            const days = diffDays % 7;
+            
+            // Calculate due date (280 days from LMP)
+            const dueDate = new Date(lmp);
+            dueDate.setDate(dueDate.getDate() + 280);
+            
+            // Determine trimester
+            let trimester;
+            if (weeks < 13) {
+                trimester = "Primeiro trimestre";
+            } else if (weeks < 27) {
+                trimester = "Segundo trimestre";
+            } else {
+                trimester = "Terceiro trimestre";
+            }
+            
+            // Format due date
+            const dueDateFormatted = dueDate.toLocaleDateString('pt-BR', {
+                day: '2-digit',
+                month: 'long',
+                year: 'numeric'
+            });
+            
+            // Display results
+            const resultContent = document.getElementById('result-content');
+            resultContent.innerHTML = `
+                <div class="result-item">
+                    <strong>Idade gestacional:</strong> ${weeks} semanas e ${days} dias
+                </div>
+                <div class="result-item">
+                    <strong>Trimestre:</strong> ${trimester}
+                </div>
+                <div class="result-item">
+                    <strong>Data provável do parto:</strong> ${dueDateFormatted}
+                </div>
+            `;
+            
+            document.getElementById('result').style.display = 'block';
+            
+            // Show additional sections after calculation
+            setTimeout(() => {
+                document.getElementById('about-section').style.display = 'block';
+                document.getElementById('cta-section').style.display = 'block';
+                
+                // Smooth scroll to result
+                document.getElementById('result').scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            }, 500);
+        }
+
+        // WhatsApp integration (placeholder - will be updated with actual number)
+        function openWhatsApp() {
+            const message = encodeURIComponent("Olá! Gostaria de agendar uma consulta com a Dra. Kamilla.");
+            // Placeholder number - to be replaced with actual WhatsApp number
+            const whatsappUrl = `https://wa.me/5511999999999?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Add click events to CTA buttons
+        document.getElementById('main-cta').addEventListener('click', function(e) {
+            e.preventDefault();
+            openWhatsApp();
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const consultationCTA = document.getElementById('consultation-cta');
+            if (consultationCTA) {
+                consultationCTA.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openWhatsApp();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
